@@ -1,19 +1,15 @@
 import React from 'react'
+import { v4 as uuid } from 'uuid';
 import SynthDisplay from './components/SynthDisplay'
 
-class App extends React.Component {
+export function App() {
 
-    constructor(props){
-        super(props);
-        this.toVersions = this.toVersions.bind(this);
-    }
-    
     const [synths, setSynths] = React.useState<any[]>([])
-    const [synth, setSynth] = React.useState<any[]>([])
+    const [synth] = React.useState<any[]>([])
 
     React.useEffect(() => {
         const json = localStorage.getItem("synths") || '{}';
-        const loadedSynths = JSON.parse(json)
+        const loadedSynths = JSON.parse(json);
         if (loadedSynths){
             setSynths(loadedSynths)
         }
@@ -52,8 +48,6 @@ class App extends React.Component {
 
         setSynths(updatedSynths)
     }
-
-
           
     return ( 
         <div className = "App">
@@ -81,12 +75,7 @@ class App extends React.Component {
                     </div>
                     <div>
                         <label>Synth Name</label>
-                        <input 
-                        type="text" 
-                        onChange={(e): void => {
-                            return setSynth(e.target.value);
-                        }} 
-                        value={synth}/>
+                        <input type="text" value={synth}/>
                     </div>
                     <div>
                         <button type="submit">Add New Synth</button>
@@ -98,7 +87,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-function uuid() {
-    throw new Error('Function not implemented.');
-}
