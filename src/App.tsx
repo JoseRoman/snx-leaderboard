@@ -1,6 +1,8 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid';
+import Button from '@material-ui/core/Button';
 import SynthDisplay from './components/SynthDisplay'
+import { TextField } from '@material-ui/core';
 
 export function App() {
 
@@ -32,22 +34,22 @@ export function App() {
         setSynths([...synths].concat(newSynth))
     }
 
-    // function deleteSynth(id: typeof uuid) {
-    //     const updatedSynths = [...synths].filter((synth) => synth.id !== id)
+    function deleteSynth(id: typeof uuid) {
+        const updatedSynths = [...synths].filter((synth) => synth.id !== id)
 
-    //     setSynths(updatedSynths)
-    // }
+        setSynths(updatedSynths)
+    }
 
-    // function voteForSynth(id: typeof uuid){
-    //     const updatedSynths = [...synths].map((synth) => {
-    //         if (synth.id === id){
-    //             synth.contributions += 1
-    //         }
-    //         return synth
-    //     })
+    function voteForSynth(id: typeof uuid){
+        const updatedSynths = [...synths].map((synth) => {
+            if (synth.id === id){
+                synth.contributions += 1
+            }
+            return synth
+        })
 
-    //     setSynths(updatedSynths)
-    // }
+        setSynths(updatedSynths)
+    }
           
     return ( 
         <div className = "App">
@@ -75,10 +77,10 @@ export function App() {
                     </div>
                     <div>
                         <label>Synth Name</label>
-                        <input type="text" value={synth}/>
+                        <TextField id="outlined-basic" label="Outlined" variant="outlined" type="text" value={synth}/>
                     </div>
                     <div>
-                        <button type="submit">Add New Synth</button>
+                        <Button variant="contained" color="primary" type="submit">Add New Synth</Button>
                     </div>
                 </form>
             </div>            

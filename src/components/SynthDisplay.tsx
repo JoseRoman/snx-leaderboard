@@ -1,3 +1,4 @@
+import Button from '@material-ui/core/Button';
 
 export function SynthDisplay(props : { synth: any }) {
     const { synth } = props;
@@ -9,8 +10,8 @@ export function SynthDisplay(props : { synth: any }) {
                 <div> 
                     Contributions: {synth.contributions}
                 </div>
-                <button onClick={() => synth.voteForSynth(synth.id)}>Vote</button>
-                <button onClick={() => synth.deleteSynth(synth.id)}>Delete</button>
+                <Button variant="contained" color="primary" onClick={() => synth.voteForSynth(synth.id)}>Vote</Button>
+                <Button variant="contained" color="primary" onClick={() => synth.deleteSynth(synth.id)}>Delete</Button>
             </div>
         )
 }
