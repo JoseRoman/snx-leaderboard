@@ -1,96 +1,93 @@
 import React from 'react'
 import uuid from 'react-uuid'
 import './App.css';
+import SynthDisplay from './components/SynthDisplay'
 
 function App() {
-    const [todos, setTodos] = React.useState([])
-    const [todo, setTodo] = React.useState("")
-    const [todoEditing, setTodoEditing] = React.useState(null)
-    const [editingText, setEditingText] = React.useState("")
+    const [synths, setSynths] = React.useState([])
+    const [synth, setSynth] = React.useState("")
 
     React.useEffect(() => {
-        const json = localStorage.getItem("todos")
-        const loadedTodos = JSON.parse(json)
-        if (loadedTodos){
-            setTodos(loadedTodos)
+        const json = localStorage.getItem("synths")
+        const loadedSynths = JSON.parse(json)
+        if (loadedSynths){
+            setSynths(loadedSynths)
         }
     }, [])
 
     React.useEffect(() => {
-        const json = JSON.stringify(todos)
-        localStorage.setItem("todos", json)
-    }, [todos])
+        const json = JSON.stringify(synths)
+        localStorage.setItem("synths", json)
+    }, [synths])
 
     function handleSubmit(e) {
         e.preventDefault()
 
-        const newTodo = {
+        const newSynth = {
             id: uuid(),
-            text: todo,
-            completed: false
+            name: synth,
+            contributions: 100
         }
 
-        setTodos([...todos].concat(newTodo))
-        setTodo("")
+        setSynths([...synths].concat(newSynth))
+        setSynth("")
     }
 
-    function deleteTodo(id) {
-        const updatedTodos = [...todos].filter((todo) => todo.id !== id)
+    function deleteSynth(id) {
+        const updatedSynths = [...synths].filter((synth) => synth.id !== id)
 
-        setTodos(updatedTodos)
+        setSynths(updatedSynths)
     }
 
-    function toggleComplete(id){
-        const updatedTodos = [...todos].map((todo) => {
-            if (todo.id === id){
-                todo.completed = !todo.completed
+    function voteForSynth(id){
+        const updatedSynths = [...synths].map((synth) => {
+            if (synth.id === id){
+                synth.contributions += 1
             }
-            return todo
+            return synth
         })
 
-        setTodos(updatedTodos)
+        setSynths(updatedSynths)
     }
 
-    function editTodo(id){
-        const updatedTodos = [...todos].map((todo) => {
-            if (todo.id === id){
-                todo.text = editingText
-            }
-            return todo
-        })
 
-        setTodos(updatedTodos)
-        setTodoEditing(null)
-        setEditingText("")
-    }
           
     return ( 
         <div className = "App">
-            <form onSubmit={handleSubmit}>
-                <input 
-                type="text" 
-                onChange={(e) => setTodo(e.target.value)} 
-                value={todo}/>
-                <button type="submit"> Add Todo</button>
-            </form>
-            {todos.map((todo) => <div key={todo.id}>
-                {todoEditing === todo.id 
-                ? (<input 
-                type="text" 
-                onChange={(e) => setEditingText(e.target.value)} 
-                value={editingText}></input>) 
-                : (<div>{todo.text}</div>)}
-                
-                
-                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                <input type="checkbox" 
-                    onChange={() => toggleComplete(todo.id)} 
-                    checked={todo.completed}></input>
+            <div className="title">
+                SNX Leaderboard
+            </div>
 
-                {todoEditing === todo.id 
-                    ? (<button onClick={() => editTodo(todo.id)}>Submit Edit</button>)
-                    : (<button onClick={() => setTodoEditing(todo.id)}>Edit Todo</button>)}
-            </div>)}
+            <div className="section">
+                <div className="subTitle">
+                    Proposed Synths
+                </div>
+                <div>
+                    {synths.map((synth) => 
+                        <div key={synth.id}>
+                            <SynthDisplay synth={synth} voteForSynth={voteForSynth} deleteSynth={deleteSynth}/>
+                        </div>
+                    )}
+                </div>
+            </div>
+            
+            <div className="section">
+                <form onSubmit={handleSubmit}>
+                    <div className="subTitle">
+                        Propose New Synth
+                    </div>
+                    <div>
+                        <label>Synth Name</label>
+                        <input 
+                        type="text" 
+                        onChange={(e) => setSynth(e.target.value)} 
+                        value={synth}/>
+                    </div>
+                    <div>
+                        <button type="submit">Add New Synth</button>
+                    </div>
+                </form>
+            </div>            
         </div>
     );
 }
