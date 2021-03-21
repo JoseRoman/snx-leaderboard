@@ -1,12 +1,14 @@
+import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import React from 'react';
 
 export function SynthDisplay(props : { synth: any }) {
     const { synth } = props;
         return  (
             <div className="section">
-                <div> 
+                <Typography variant="h6" gutterBottom>
                     Synth Name: {synth.name}
-                </div>
+                </Typography>
                 <div> 
                     Contributions: {synth.contributions}
                 </div>
