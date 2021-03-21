@@ -1,7 +1,7 @@
 import React from 'react'
 
 class SynthDisplay extends React.Component {
-    render() {
+    render(): JSX.Element {
         return  <div className="section">
                     <div> 
                         Synth Name: {this.props.synth.name}

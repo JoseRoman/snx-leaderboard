@@ -1,14 +1,18 @@
 import React from 'react'
-import uuid from 'react-uuid'
-import './App.css';
 import SynthDisplay from './components/SynthDisplay'
 
-function App() {
-    const [synths, setSynths] = React.useState([])
-    const [synth, setSynth] = React.useState("")
+class App extends React.Component {
+
+    constructor(props){
+        super(props);
+        this.toVersions = this.toVersions.bind(this);
+    }
+    
+    const [synths, setSynths] = React.useState<any[]>([])
+    const [synth, setSynth] = React.useState<any[]>([])
 
     React.useEffect(() => {
-        const json = localStorage.getItem("synths")
+        const json = localStorage.getItem("synths") || '{}';
         const loadedSynths = JSON.parse(json)
         if (loadedSynths){
             setSynths(loadedSynths)
@@ -20,7 +24,7 @@ function App() {
         localStorage.setItem("synths", json)
     }, [synths])
 
-    function handleSubmit(e) {
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault()
 
         const newSynth = {
@@ -30,16 +34,15 @@ function App() {
         }
 
         setSynths([...synths].concat(newSynth))
-        setSynth("")
     }
 
-    function deleteSynth(id) {
+    function deleteSynth(id: typeof uuid) {
         const updatedSynths = [...synths].filter((synth) => synth.id !== id)
 
         setSynths(updatedSynths)
     }
 
-    function voteForSynth(id){
+    function voteForSynth(id: typeof uuid){
         const updatedSynths = [...synths].map((synth) => {
             if (synth.id === id){
                 synth.contributions += 1
@@ -63,7 +66,7 @@ function App() {
                     Proposed Synths
                 </div>
                 <div>
-                    {synths.map((synth) => 
+                    {synths.map((synth): JSX.Element => 
                         <div key={synth.id}>
                             <SynthDisplay synth={synth} voteForSynth={voteForSynth} deleteSynth={deleteSynth}/>
                         </div>
@@ -80,7 +83,9 @@ function App() {
                         <label>Synth Name</label>
                         <input 
                         type="text" 
-                        onChange={(e) => setSynth(e.target.value)} 
+                        onChange={(e): void => {
+                            return setSynth(e.target.value);
+                        }} 
                         value={synth}/>
                     </div>
                     <div>
@@ -93,3 +98,7 @@ function App() {
 }
 
 export default App;
+
+function uuid() {
+    throw new Error('Function not implemented.');
+}
