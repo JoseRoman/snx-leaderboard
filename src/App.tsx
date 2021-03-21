@@ -5,7 +5,7 @@ import SynthDisplay from './components/SynthDisplay'
 export function App() {
 
     const [synths, setSynths] = React.useState<any[]>([])
-    const [synth] = React.useState<any[]>([])
+    const [synth] = React.useState<any>([])
 
     React.useEffect(() => {
         const json = localStorage.getItem("synths") || '{}';
@@ -32,22 +32,22 @@ export function App() {
         setSynths([...synths].concat(newSynth))
     }
 
-    function deleteSynth(id: typeof uuid) {
-        const updatedSynths = [...synths].filter((synth) => synth.id !== id)
+    // function deleteSynth(id: typeof uuid) {
+    //     const updatedSynths = [...synths].filter((synth) => synth.id !== id)
 
-        setSynths(updatedSynths)
-    }
+    //     setSynths(updatedSynths)
+    // }
 
-    function voteForSynth(id: typeof uuid){
-        const updatedSynths = [...synths].map((synth) => {
-            if (synth.id === id){
-                synth.contributions += 1
-            }
-            return synth
-        })
+    // function voteForSynth(id: typeof uuid){
+    //     const updatedSynths = [...synths].map((synth) => {
+    //         if (synth.id === id){
+    //             synth.contributions += 1
+    //         }
+    //         return synth
+    //     })
 
-        setSynths(updatedSynths)
-    }
+    //     setSynths(updatedSynths)
+    // }
           
     return ( 
         <div className = "App">
@@ -62,7 +62,7 @@ export function App() {
                 <div>
                     {synths.map((synth): JSX.Element => 
                         <div key={synth.id}>
-                            <SynthDisplay synth={synth} voteForSynth={voteForSynth} deleteSynth={deleteSynth}/>
+                            <SynthDisplay synth={synth}/>
                         </div>
                     )}
                 </div>

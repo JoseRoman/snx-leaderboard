@@ -1,17 +1,16 @@
-import React from 'react'
 
-export function SynthDisplay(props: { synth}) {
-
+export function SynthDisplay(props : { synth: any }) {
+    const { synth } = props;
         return  (
             <div className="section">
                 <div> 
-                    Synth Name: {this.props.synth.name}
+                    Synth Name: {synth.name}
                 </div>
                 <div> 
-                    Contributions: {this.props.synth.contributions}
+                    Contributions: {synth.contributions}
                 </div>
-                <button onClick={() => this.props.voteForSynth(this.props.synth.id)}>Vote</button>
-                <button onClick={() => this.props.deleteSynth(this.props.synth.id)}>Delete</button>
+                <button onClick={() => synth.voteForSynth(synth.id)}>Vote</button>
+                <button onClick={() => synth.deleteSynth(synth.id)}>Delete</button>
             </div>
         )
 }
