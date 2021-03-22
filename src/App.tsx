@@ -2,8 +2,10 @@ import React from 'react'
 import { v4 as uuid } from 'uuid';
 import Button from '@material-ui/core/Button';
 import SynthDisplay from './components/SynthDisplay/SynthDisplay'
-import { Container, Paper, TextField } from '@material-ui/core';
+import { Container, Paper, TextField, Typography } from '@material-ui/core';
 import MenuAppBar from './components/AppBar/AppBar';
+import CustomizedInputBase from './components/InputField/InputField';
+import SynthList from './components/List/SynthList';
 
 export function App() {
 
@@ -56,8 +58,11 @@ export function App() {
     <div>
         <MenuAppBar/>
         <Container>
+        <Typography variant="h6">
+            Proposed Synths
+          </Typography>
             <Paper elevation={3} >
-                <div className="section">
+                {/* <div className="section">
                         <div className="subTitle">
                             Proposed Synths
                         </div>
@@ -68,22 +73,24 @@ export function App() {
                                 </div>
                             )}
                         </div>
-                    </div>
-                    
-                    <div className="section">
+                    </div> */}
+                    <SynthList/>     
+
+            </Paper>
+            <Paper>
+            <div className="section">
                         <form onSubmit={handleSubmit}>
                             <div className="subTitle">
                                 Propose New Synth
                             </div>
                             <div>
-                                <label>Synth Name</label>
-                                <TextField id="outlined-basic" label="Outlined" variant="outlined" type="text" value={synth}/>
+                                <CustomizedInputBase/>
                             </div>
                             <div>
                                 <Button variant="contained" color="primary" type="submit">Add New Synth</Button>
                             </div>
                         </form>
-                    </div>            
+                    </div>       
 
             </Paper>
         </Container>
