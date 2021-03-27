@@ -1,8 +1,7 @@
 import React from 'react'
 import { v4 as uuid } from 'uuid';
 import Button from '@material-ui/core/Button';
-import SynthDisplay from './components/SynthDisplay/SynthDisplay'
-import { Container, Paper, TextField, Typography } from '@material-ui/core';
+import { Container, Paper, Typography } from '@material-ui/core';
 import MenuAppBar from './components/AppBar/AppBar';
 import CustomizedInputBase from './components/InputField/InputField';
 import SynthList from './components/List/SynthList';
