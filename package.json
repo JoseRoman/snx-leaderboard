@@ -1,48 +1,39 @@
 {
-  "name": "snx-leaderboard",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@material-ui/icons": "^4.11.2",
-    "@testing-library/jest-dom": "^5.11.9",
-    "@testing-library/react": "^11.2.5",
-    "@testing-library/user-event": "^12.8.3",
-    "@types/jest": "^26.0.21",
-    "@types/node": "^14.14.35",
-    "@types/react": "^17.0.3",
-    "@types/react-dom": "^17.0.2",
-    "@types/uuid": "^8.3.0",
-    "@web3-react/core": "^6.1.9",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "react-uuid": "^1.0.2",
-    "typescript": "^4.2.3",
-    "web-vitals": "^1.1.1"
-  },
+  "name": "web3-react-example",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "next",
+    "build": "next build && next export"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "browser": {
+    "http": false
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "@chakra-ui/icons": "^1.0.7",
+    "@chakra-ui/react": "^1.4.1",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@ethersproject/providers": "^5.0.2",
+    "@ethersproject/units": "^5.0.1",
+    "@material-ui/core": "^4.11.3",
+    "@web3-react/abstract-connector": "latest",
+    "@web3-react/authereum-connector": "latest",
+    "@web3-react/core": "latest",
+    "@web3-react/fortmatic-connector": "latest",
+    "@web3-react/frame-connector": "latest",
+    "@web3-react/injected-connector": "latest",
+    "@web3-react/lattice-connector": "latest",
+    "@web3-react/ledger-connector": "latest",
+    "@web3-react/magic-connector": "latest",
+    "@web3-react/network-connector": "latest",
+    "@web3-react/portis-connector": "latest",
+    "@web3-react/torus-connector": "latest",
+    "@web3-react/trezor-connector": "latest",
+    "@web3-react/walletconnect-connector": "latest",
+    "@web3-react/walletlink-connector": "latest",
+    "framer-motion": "^4.0.3",
+    "next": "^9.2.1",
+    "react": ">=16.8",
+    "react-dom": ">=16.8",
+    "typescript": "^3.8.5"
   }
 }
