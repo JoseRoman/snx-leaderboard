@@ -4,9 +4,6 @@
     "start": "next",
     "build": "next build && next export"
   },
-  "browser": {
-    "http": false
-  },
   "dependencies": {
     "@chakra-ui/icons": "^1.0.7",
     "@chakra-ui/react": "^1.4.1",
