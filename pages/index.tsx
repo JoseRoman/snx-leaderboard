@@ -22,6 +22,7 @@ import { Spinner } from '../components/Spinner'
 import theme from '../theme'
 import { LeaderboardList } from '../components/LeaderboardList'
 import { ProposalInput } from '../components/ProposalInput'
+import { MinimumAlert } from '../components/MinimumAlert'
 
 enum ConnectorNames {
   Injected = 'Injected',
@@ -236,8 +237,9 @@ function App() {
   return (
     <>
       <Container maxW="xl">
+        <MinimumAlert />
         <LeaderboardList />
-          <ProposalInput />
+        <ProposalInput />
       </Container>
       <hr style={{ margin: '2rem' }} />
       <Header />
