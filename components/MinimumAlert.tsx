@@ -6,11 +6,11 @@ import {
   } from "@chakra-ui/react"
 import React from "react"
 
-export function MinimumAlert() {
+export function MinimumAlert({ minimum }) {
   return (
-        <Alert status="info">
+        <Alert status="info" variant="left-accent">
             <AlertIcon />
-            A minimum of 0.05 ETH required to vote.
+            A minimum of {minimum} ETH required to vote.
         </Alert>
   )
 }

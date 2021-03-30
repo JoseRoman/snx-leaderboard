@@ -21,9 +21,9 @@ import {
 import { ExternalLinkIcon } from '@chakra-ui/icons'
 import React from "react"
 
-export function LeaderboardList() {
+export function LeaderboardList({ proposals, library, account }) {
   return (
-    <Table variant="simple">
+    <Table variant="simple" >
     <Thead>
         <Tr>
         <Th># of Votes</Th>
@@ -33,68 +33,44 @@ export function LeaderboardList() {
         </Tr>
     </Thead>
     <Tbody>
+    {
+    proposals.map(proposal => 
         <Tr>
             <Td>
                 <Stat>
-                    <StatNumber>670</StatNumber>
+                    <StatNumber>{ proposal.votes }</StatNumber>
                     <StatHelpText>
                         <StatArrow type="increase" />
                         23.36%
                     </StatHelpText>
                 </Stat>
             </Td>
-            <Td>NET</Td>
-            <Td>No Existing Feed</Td>
+            <Td>{ proposal.name }</Td>
+            { proposal.feed
+                ?  <Td>
+                        <Link href={`https://etherscan.io/address/${proposal.feed}`} isExternal>
+                            Existing Feed <ExternalLinkIcon mx="2px" /> 
+                        </Link>
+                    </Td>
+                : <Td>No Existing Feeds</Td>
+            }
             <Td>
                 <ButtonGroup variant="outline" spacing="5">
-                    <Button isLoading colorScheme="blue">Vote</Button>
+                    <Button colorScheme="blue" onClick={() => {
+              library
+                .getSigner(account)
+                .signMessage(`Voting for ${proposal.name}'s Proposal`)
+                .then((signature: any) => {
+                  window.alert(`Success!\n\n${signature}`)
+                })
+                .catch((error: any) => {
+                  window.alert('Failure!' + (error && error.message ? `\n\n${error.message}` : ''))
+                })
+            }}>Vote</Button>
                 </ButtonGroup>
             </Td>
         </Tr>
-        <Tr>
-            <Td>
-                <Stat>
-                    <StatNumber>85</StatNumber>
-                    <StatHelpText>
-                        <StatArrow type="increase" />
-                        13.29%
-                    </StatHelpText>
-                </Stat>
-            </Td>
-            <Td>GME</Td>
-            <Td>
-                <Link href="https://etherscan.io/address/0xDC530D9457755926550b59e8ECcdaE7624181557" isExternal>
-                    Existing Feed <ExternalLinkIcon mx="2px" /> 
-                </Link>
-            </Td>
-            <Td>
-                <ButtonGroup variant="outline" spacing="5">
-                    <Button colorScheme="blue">Vote</Button>
-                </ButtonGroup>
-            </Td>
-        </Tr>
-        <Tr>
-        <Td>
-                <Stat>
-                    <StatNumber>15</StatNumber>
-                    <StatHelpText>
-                        <StatArrow type="increase" />
-                        7.24%
-                    </StatHelpText>
-                </Stat>
-        </Td>
-        <Td>JPY</Td>
-        <Td>
-            <Link href="https://etherscan.io/address/0xDC530D9457755926550b59e8ECcdaE7624181557" isExternal>
-                    Existing Feed <ExternalLinkIcon mx="2px" /> 
-            </Link>
-        </Td>
-        <Td>
-            <ButtonGroup variant="outline" spacing="5">
-                <Button colorScheme="blue">Vote</Button>
-            </ButtonGroup>
-        </Td>
-        </Tr>
+    )}
     </Tbody>
     {/* <Tfoot>
         <Tr>

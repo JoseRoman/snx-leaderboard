@@ -14,7 +14,7 @@ export function ProposalInput() {
             <br />
             <FormControl id="synth" isRequired>
                 <FormLabel>Synth Name</FormLabel>
-                <Input type="text" />
+                <Input type="text" maxLength="20" required/>
                 <FormHelperText>Please use ticker symbol (Ex. TSLA instead of Tesla)</FormHelperText>
             </FormControl>
             <br/>
