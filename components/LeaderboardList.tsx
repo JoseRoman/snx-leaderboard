@@ -19,7 +19,6 @@ import {
   } from "@chakra-ui/react"
 
 import { ExternalLinkIcon } from '@chakra-ui/icons'
-import React from "react"
 
 export function LeaderboardList({ proposals, library, account }) {
   return (

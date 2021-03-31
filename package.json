@@ -1,7 +1,7 @@
 {
   "name": "web3-react-example",
   "scripts": {
-    "start": "next",
+    "start": "next -p 3001",
     "build": "next build && next export"
   },
   "dependencies": {
@@ -27,6 +27,7 @@
     "@web3-react/trezor-connector": "latest",
     "@web3-react/walletconnect-connector": "latest",
     "@web3-react/walletlink-connector": "latest",
+    "formik": "^2.2.6",
     "framer-motion": "^4.0.3",
     "next": "^9.5.5",
     "react": "^17.0.2",

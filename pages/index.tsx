@@ -6,10 +6,7 @@ import { Button, Container } from "@chakra-ui/react"
 
 import { useEagerConnect, useInactiveListener } from '../hooks'
 import {
-  injected,
-  network,
-  walletconnect,
-  walletlink,
+  injected
 } from '../connectors'
 import theme from '../theme'
 import { LeaderboardList } from '../components/LeaderboardList'
@@ -17,17 +14,11 @@ import { ProposalInput } from '../components/ProposalInput'
 import { MinimumAlert } from '../components/MinimumAlert'
 
 enum ConnectorNames {
-  Injected = 'Injected',
-  Network = 'Network',
-  WalletConnect = 'WalletConnect',
-  WalletLink = 'WalletLink',
+  Injected = 'Injected'
 }
 
 const connectorsByName: { [connectorName in ConnectorNames]: any } = {
-  [ConnectorNames.Injected]: injected,
-  [ConnectorNames.Network]: network,
-  [ConnectorNames.WalletConnect]: walletconnect,
-  [ConnectorNames.WalletLink]: walletlink,
+  [ConnectorNames.Injected]: injected
 }
 
 
@@ -49,7 +40,7 @@ export default function() {
 
 function App() {
   const context = useWeb3React<Web3Provider>()
-  const { connector, library, chainId, account } = context
+  const { connector, library, account } = context
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = React.useState<any>()
@@ -117,20 +108,6 @@ function App() {
             }}
           >
             Sign Message
-          </Button>
-        )}
-        {!!(connector === connectorsByName[ConnectorNames.Network] && chainId) && (
-          <Button
-            style={{
-              height: '3rem',
-              borderRadius: '1rem',
-              cursor: 'pointer'
-            }}
-            onClick={() => {
-              ;(connector as any).changeChainId(chainId === 1 ? 4 : 1)
-            }}
-          >
-            Switch Networks
           </Button>
         )}
       </div>

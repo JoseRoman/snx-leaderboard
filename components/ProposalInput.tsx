@@ -6,7 +6,6 @@ import {
     Input,
     FormHelperText,
   } from "@chakra-ui/react"
-import React from "react"
 
 export function ProposalInput() {
   return (
@@ -14,7 +13,7 @@ export function ProposalInput() {
             <br />
             <FormControl id="synth" isRequired>
                 <FormLabel>Synth Name</FormLabel>
-                <Input type="text" maxLength="20" required/>
+                <Input type="text" required/>
                 <FormHelperText>Please use ticker symbol (Ex. TSLA instead of Tesla)</FormHelperText>
             </FormControl>
             <br/>
