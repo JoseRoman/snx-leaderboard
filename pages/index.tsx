@@ -21,7 +21,6 @@ const connectorsByName: { [connectorName in ConnectorNames]: any } = {
   [ConnectorNames.Injected]: injected
 }
 
-
 function getLibrary(provider: any): Web3Provider {
   const library = new Web3Provider(provider)
   library.pollingInterval = 12000
@@ -40,7 +39,7 @@ export default function() {
 
 function App() {
   const context = useWeb3React<Web3Provider>()
-  const { connector, library, account } = context
+  const { connector, library, account, activate, deactivate, active, error } = context
 
   // handle logic to recognize the connector currently being activated
   const [activatingConnector, setActivatingConnector] = React.useState<any>()
@@ -82,6 +81,63 @@ function App() {
         style={{
           display: 'grid',
           gridGap: '1rem',
+          gridTemplateColumns: '1fr 1fr',
+          maxWidth: '20rem',
+          margin: 'auto'
+        }}
+      >
+        {Object.keys(connectorsByName).map(name => {
+          const currentConnector = connectorsByName[name]
+          const activating = currentConnector === activatingConnector
+          const connected = currentConnector === connector
+          const disabled = !triedEager || !!activatingConnector || connected || !!error
+
+          return (
+            <Button
+              style={{
+                height: '3rem',
+                borderRadius: '1rem',
+                borderColor: activating ? 'orange' : connected ? 'green' : 'unset',
+                cursor: disabled ? 'unset' : 'pointer',
+                position: 'relative'
+              }}
+              disabled={disabled}
+              key={name}
+              onClick={() => {
+                setActivatingConnector(currentConnector)
+                activate(connectorsByName[name])
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  top: '0',
+                  left: '0',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  color: 'black',
+                  margin: '0 0 0 1rem'
+                }}
+              >
+                {connected && (
+                  <span role="img" aria-label="check">
+                    ✅
+                  </span>
+                )}
+              </div>
+              {name}
+            </Button>
+          )
+        })}
+      </div>
+
+      <hr style={{ margin: '2rem' }} />
+
+      <div
+        style={{
+          display: 'grid',
+          gridGap: '1rem',
           gridTemplateColumns: 'fit-content',
           maxWidth: '20rem',
           margin: 'auto'
@@ -98,7 +154,7 @@ function App() {
             onClick={() => {
               library
                 .getSigner(account)
-                .signMessage('👋')
+                .sendTransaction({from: 'test', to: 'test', value: 150})
                 .then((signature: any) => {
                   window.alert(`Success!\n\n${signature}`)
                 })

@@ -12,6 +12,7 @@ export default class Root extends App {
       <>
         <Head>
           <title>SNX Leaderboard</title>
+          <link rel="shortcut icon" href="/static/favicon.ico" />
         </Head>
         <Component />
       </>

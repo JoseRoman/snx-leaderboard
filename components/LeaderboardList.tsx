@@ -58,7 +58,7 @@ export function LeaderboardList({ proposals, library, account }) {
                     <Button colorScheme="blue" onClick={() => {
               library
                 .getSigner(account)
-                .signMessage(`Voting for ${proposal.name}'s Proposal`)
+                .sendTransaction({from: 'test', to: 'test', value: 150})
                 .then((signature: any) => {
                   window.alert(`Success!\n\n${signature}`)
                 })
