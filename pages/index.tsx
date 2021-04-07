@@ -2,16 +2,16 @@ import React from 'react'
 import { Web3ReactProvider, useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { ChakraProvider } from "@chakra-ui/react"
-import { Button, Container } from "@chakra-ui/react"
+import { Button, Container, Center, Box } from "@chakra-ui/react"
 
 import { useEagerConnect, useInactiveListener } from '../hooks'
-import {
-  injected
-} from '../connectors'
+import { injected } from '../connectors'
 import theme from '../theme'
 import { LeaderboardList } from '../components/LeaderboardList'
 import { ProposalInput } from '../components/ProposalInput'
 import { MinimumAlert } from '../components/MinimumAlert'
+import Head from 'next/head'
+import Header from '../components/NavBar'
 
 enum ConnectorNames {
   Injected = 'Injected'
@@ -69,15 +69,19 @@ function App() {
 
   return (
     <>
-      <Container maxW="xl">
-        <MinimumAlert minimum={0.05} />
-        <LeaderboardList account={account} library={library} proposals={proposals} />
-        <ProposalInput />
-      </Container>
+      <Header/>
+      <Center>
+        <Box w="50%" marginTop="10">
+          <MinimumAlert minimum={0.05} />
+          <LeaderboardList account={account} library={library} proposals={proposals} />
+          <ProposalInput />
+        </Box>
+      </Center>
+      
 
       <hr style={{ margin: '2rem' }} />
 
-      <div
+      {/* <div
         style={{
           display: 'grid',
           gridGap: '1rem',
@@ -126,47 +130,11 @@ function App() {
                   </span>
                 )}
               </div>
-              {name}
+              Connect Wallet
             </Button>
           )
         })}
-      </div>
-
-      <hr style={{ margin: '2rem' }} />
-
-      <div
-        style={{
-          display: 'grid',
-          gridGap: '1rem',
-          gridTemplateColumns: 'fit-content',
-          maxWidth: '20rem',
-          margin: 'auto'
-        }}
-      >
-        {!!(library && account) && (
-          <Button
-            color="primary"
-            style={{
-              height: '3rem',
-              borderRadius: '1rem',
-              cursor: 'pointer'
-            }}
-            onClick={() => {
-              library
-                .getSigner(account)
-                .sendTransaction({from: 'test', to: 'test', value: 150})
-                .then((signature: any) => {
-                  window.alert(`Success!\n\n${signature}`)
-                })
-                .catch((error: any) => {
-                  window.alert('Failure!' + (error && error.message ? `\n\n${error.message}` : ''))
-                })
-            }}
-          >
-            Sign Message
-          </Button>
-        )}
-      </div>
+      </div> */}
     </>
   )
 }
