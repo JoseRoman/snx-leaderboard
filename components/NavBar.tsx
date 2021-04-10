@@ -4,16 +4,20 @@ import { useEagerConnect, useInactiveListener } from "../hooks";
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { injected } from '../connectors'
+import * as Utils from 'web3-utils';
 
 const Header = (props) => {
 
   const [show, setShow] = React.useState(false);
   const context = useWeb3React<Web3Provider>()
   const { connector, library, account, activate, deactivate, active, error } = context
-
+  
   const [activatingConnector, setActivatingConnector] = React.useState<any>()
 
   const connected = injected === connector
+
+  console.log(Utils.fromWei("300"));
+  console.log(Utils.toWei("30000"));
 
   React.useEffect(() => {
     if (activatingConnector && activatingConnector === connector) {
