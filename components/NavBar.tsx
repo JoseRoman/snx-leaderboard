@@ -61,11 +61,11 @@ const Header = (props) => {
         display={{ sm: show ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button bg="transparent" border="1px" borderColor={connected ? 'green' : 'unset'} onClick={() => {
+        <Button bg="transparent" overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" border="1px" onClick={() => {
                 setActivatingConnector('Injected')
                 activate(injected)
               }}>
-          Connect Wallet
+          { connected ?  account : 'Connect Wallet' }
         </Button>
 
       </Box>

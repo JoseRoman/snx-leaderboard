@@ -9,7 +9,13 @@ import { InjectedConnector } from '@web3-react/injected-connector'
 //   4: process.env.RPC_URL_4 as string
 // }
 
-export const injected = new InjectedConnector({ supportedChainIds: [1, 3, 4, 5, 42] })
+export const injected = new InjectedConnector({ supportedChainIds: [
+    1, // Mainet
+    3, // Ropsten
+    4, // Rinkeby
+    5, // Goerli
+    42, // Kovan
+]})
 
 // export const network = new NetworkConnector({
 //   urls: { 1: RPC_URLS[1], 4: RPC_URLS[4] },
