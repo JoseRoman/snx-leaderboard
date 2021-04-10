@@ -1,8 +1,31 @@
 import React from "react";
-import { Box, Heading, Flex, Text, Button } from "@chakra-ui/react";
+import { Box, Heading, Flex, Button } from "@chakra-ui/react";
+import { useEagerConnect, useInactiveListener } from "../hooks";
+import { useWeb3React } from '@web3-react/core'
+import { Web3Provider } from '@ethersproject/providers'
+import { injected } from '../connectors'
 
 const Header = (props) => {
+
   const [show, setShow] = React.useState(false);
+  const context = useWeb3React<Web3Provider>()
+  const { connector, library, account, activate, deactivate, active, error } = context
+
+  const [activatingConnector, setActivatingConnector] = React.useState<any>()
+
+  const connected = injected === connector
+
+  React.useEffect(() => {
+    if (activatingConnector && activatingConnector === connector) {
+      setActivatingConnector(undefined)
+    }
+  }, [activatingConnector, connector])
+
+  // handle logic to eagerly connect to the injected ethereum provider, if it exists and has granted access already
+  const triedEager = useEagerConnect()
+
+  // handle logic to connect in reaction to certain events on the injected ethereum provider, if it exists
+  useInactiveListener(!triedEager || !!activatingConnector)
 
   return (
     <Flex
@@ -38,12 +61,13 @@ const Header = (props) => {
         display={{ sm: show ? "block" : "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
-        <Button bg="transparent" border="1px" onClick={() => {
-                setActivatingConnector(currentConnector)
-                activate(connectorsByName[name])
+        <Button bg="transparent" border="1px" borderColor={connected ? 'green' : 'unset'} onClick={() => {
+                setActivatingConnector('Injected')
+                activate(injected)
               }}>
           Connect Wallet
         </Button>
+
       </Box>
     </Flex>
   );

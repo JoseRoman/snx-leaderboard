@@ -2,7 +2,7 @@ import React from 'react'
 import { Web3ReactProvider, useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
 import { ChakraProvider } from "@chakra-ui/react"
-import { Button, Container, Center, Box } from "@chakra-ui/react"
+import { Center, Box } from "@chakra-ui/react"
 
 import { useEagerConnect, useInactiveListener } from '../hooks'
 import { injected } from '../connectors'
@@ -10,7 +10,6 @@ import theme from '../theme'
 import { LeaderboardList } from '../components/LeaderboardList'
 import { ProposalInput } from '../components/ProposalInput'
 import { MinimumAlert } from '../components/MinimumAlert'
-import Head from 'next/head'
 import Header from '../components/NavBar'
 
 enum ConnectorNames {
