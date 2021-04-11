@@ -5,11 +5,11 @@ import {
     AlertDescription,
   } from "@chakra-ui/react"
 
-export function MinimumAlert({ minimum }) {
+export function MinimumAlert({ voteAmount, proposalAmount }) {
   return (
         <Alert status="info" variant="left-accent">
             <AlertIcon />
-            A minimum of {minimum} ETH required to vote.
+            All votes cost {voteAmount} ETH. All proposals cost {proposalAmount} ETH.
         </Alert>
   )
 }
