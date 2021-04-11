@@ -51,9 +51,12 @@ Example Workflow
 
 
 ## How we built it 
-- GitHub Actions
+- Purchased leaderboard.eth domain through [ENS](https://ens.domains/)
+- Setup GitHub Actions
   - Code Building
   - Contiunous Deployment to Fleek 
+- Smart Contract and React App Development
+- Testing
 
 ### Tools
 - Solidity
