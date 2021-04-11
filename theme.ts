@@ -20,7 +20,7 @@ const overrides = extendTheme({
       body: {
         fontFamily: "body",
         color: "white",
-        background: "linear-gradient(189deg, rgba(26,0,45,1) 35%, rgb(26 0 45 / 70%) 100%),url(/static/synth-retrowave-synthwave-fon-new-retro-wave-sintveiv-ret-15.jpg)",
+        background: "linear-gradient(189deg, rgba(26,0,45,1) 35%, rgb(26 0 45 / 57%) 100%),url(/static/synth-retrowave-synthwave-fon-new-retro-wave-sintveiv-ret-15.jpg)",
 
         lineHeight: "base",
       },
