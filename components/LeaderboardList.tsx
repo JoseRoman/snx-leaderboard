@@ -8,14 +8,9 @@ import {
     Td,
     Button,
     Link,
-    StatGroup,
     Stat,
-    StatLabel,
     ButtonGroup,
-    StatHelpText,
-    StatNumber,
-    TableCaption,
-    StatArrow
+    StatNumber
   } from "@chakra-ui/react"
 
 import { ExternalLinkIcon } from '@chakra-ui/icons'
@@ -69,10 +64,6 @@ export function LeaderboardList({ proposals, library, account, leaderboardContra
             <Td>
                 <Stat>
                     <StatNumber>{ proposal.votes }</StatNumber>
-                    <StatHelpText>
-                        <StatArrow type="increase" />
-                        23.36%
-                    </StatHelpText>
                 </Stat>
             </Td>
             <Td>
