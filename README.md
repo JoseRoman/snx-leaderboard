@@ -4,7 +4,7 @@
 ## Inspiration
 
 ### Overview & Core Idea
-This hackathon was our first development project in DeFi, and we had just been learning about the Synthetix ecosystem and wanted an easy way to gauge community interest on future synths. The idea is to have a leaderboard where anyone can suggest a future synth, and the community can vote on it. If the synth got enough votes (ETH) it could be proposed to the Synthetix community with the funds to encourage its production. Voters/proposers could also get some rewards (maybe SNX, maybe the eventual Synth) for supporting the community for new synth development.
+This hackathon was our first development project in DeFi, and we had just been learning about the [Synthetix](https://synthetix.io/) ecosystem and wanted an easy way to gauge community interest on future synths. The idea is to have a leaderboard where anyone can suggest a future synth, and the community can vote on it. If the synth got enough votes (ETH) it could be proposed to the Synthetix community with the funds to encourage its production. Voters/proposers could also get some rewards (maybe SNX, maybe the eventual Synth) for supporting the community for new synth development.
 
 We believe the Synthetix protocol is uniquely positioned to creatively, and cheaply give investors exposure to the widest variety of assets in all of DeFi.
 
