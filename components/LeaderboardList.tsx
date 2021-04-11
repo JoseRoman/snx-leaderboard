@@ -27,12 +27,11 @@ export function LeaderboardList({ proposals, library, account, leaderboardContra
 
   async function vote(){
 
-    const something = await leaderboardContract.callStatic._proposedSynths('sGME');
-    console.log('something', something)
+    const voteAmount = await leaderboardContract.callStatic._voteWeiAmount();
     console.log('leaderboardContract', leaderboardContract)
     try {
         
-        const tx = await leaderboardContract.vote('sGME',{from: account, value: 100});
+        const tx = await leaderboardContract.vote('sGME',{from: account, value: voteAmount});
         console.log('tx', tx);
     } catch (error) {
         console.log("error", error)
