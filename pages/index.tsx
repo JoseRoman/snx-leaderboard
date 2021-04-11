@@ -62,44 +62,53 @@ function App() {
 
   async function loadProposals(){
 
-    const signer = await library.getSigner(account);
-    const newLeaderboardContract = new Contract(leaderboardAddress, leaderboardAbi, signer);
+    if (library != undefined) {
+      const signer = await library.getSigner(account);
 
-    const BNNumberOfSynths = await newLeaderboardContract.callStatic._numOfSynths();
-    const numberOfSynths = parseInt(BNNumberOfSynths.toString());
-    console.log('numofsynths',numberOfSynths);
+      const newLeaderboardContract = new Contract(leaderboardAddress, leaderboardAbi, signer);
+
+      const BNNumberOfSynths = await newLeaderboardContract.callStatic._numOfSynths();
+      const numberOfSynths = parseInt(BNNumberOfSynths.toString());
+      console.log('numofsynths',numberOfSynths);
+  
+  
+      let synthNames = [];
+      let proposals = [];
+  
+      for(let i = 0; i < numberOfSynths; i++){
+          synthNames.push(await newLeaderboardContract.callStatic._proposedSynthNames(i))
+      }
+  
+      for(let i = 0; i < numberOfSynths; i++){
+          const contractProposoal = await newLeaderboardContract.callStatic._proposedSynths(synthNames[i]);
+          const proposalVotes = (parseFloat(Utils.fromWei(contractProposoal.contributions.toString())) * 100) - 10;
+          console.log('proposed votes', proposalVotes)
+          const frontendProposal = {
+              name: contractProposoal.name,
+              votes: proposalVotes,
+              feed: contractProposoal.existingOracle === '0x0000000000000000000000000000000000000000' ? null : contractProposoal.existingOracle, 
+          }
+          
+          proposals.push(frontendProposal);
+      }
+  
+      setProposals(proposals);
+      setLeaderboardContract(newLeaderboardContract);
 
 
-    let synthNames = [];
-    let proposals = [];
-
-    for(let i = 0; i < numberOfSynths; i++){
-        synthNames.push(await newLeaderboardContract.callStatic._proposedSynthNames(i))
     }
-
-    for(let i = 0; i < numberOfSynths; i++){
-        const contractProposoal = await newLeaderboardContract.callStatic._proposedSynths(synthNames[i]);
-        const proposalVotes = (parseFloat(Utils.fromWei(contractProposoal.contributions.toString())) * 100) - 10;
-        console.log('proposed votes', proposalVotes)
-        const frontendProposal = {
-            name: contractProposoal.name,
-            votes: proposalVotes,
-            feed: contractProposoal.existingOracle === '0x0000000000000000000000000000000000000000' ? null : contractProposoal.existingOracle, 
-        }
-        
-        proposals.push(frontendProposal);
-    }
-
-    setProposals(proposals);
-    setLeaderboardContract(newLeaderboardContract);
   }
+
+  if (proposals.length === 0) {
+    loadProposals();
+  } 
 
   return (
     <>
       <Header/>
       <Center>
         <Box w="50%" marginTop="8" marginBottom="10" bg="rgb(9 9 47 / 94%)" borderRadius="5px" border="1px solid rgba(255, 255, 255, 0.1)" padding="25px">
-          <Button colorScheme="blue" onClick={() => loadProposals()}>Load</Button>
+          {/* <Button colorScheme="blue" onClick={() => loadProposals()}>Load</Button> */}
           <MinimumAlert voteAmount={0.01} proposalAmount={0.10}/>
           <LeaderboardList account={account} library={library} proposals={proposals} leaderboardContract={leaderboardContract}/>
           <ProposalInput account={account} leaderboardContract={leaderboardContract} proposals={proposals}/>
