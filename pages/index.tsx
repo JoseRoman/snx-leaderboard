@@ -16,6 +16,7 @@ import {
     Button
   } from "@chakra-ui/react"
   import * as Utils from 'web3-utils';
+import { variantPriorityOrder } from 'framer-motion/types/render/utils/animation-state'
 
 enum ConnectorNames {
   Injected = 'Injected'
@@ -44,8 +45,8 @@ export default function() {
 function App() {
   const context = useWeb3React<Web3Provider>()
   const { connector, library, account, activate, deactivate, active, error } = context
-  const leaderboardAddress = "0x825c9Dc0D8C704B844ACb546d3F0534E80a8F5d0";
-  const leaderboardAbi = '[{"inputs":[{"internalType":"string","name":"synthName","type":"string"},{"internalType":"address","name":"existingOracle","type":"address"}],"name":"propose","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address payable","name":"destination","type":"address"},{"internalType":"uint256","name":"voteWeiAmount","type":"uint256"},{"internalType":"uint256","name":"proposalWeiAmount","type":"uint256"},{"internalType":"uint256","name":"weiAmountForWithdrawal","type":"uint256"},{"internalType":"uint256","name":"maxSynthName","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"string","name":"synthName","type":"string"}],"name":"vote","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"string","name":"synthName","type":"string"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_maxSynthName","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_proposalWeiAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_proposedSynthNames","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"_proposedSynths","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"address","name":"existingOracle","type":"address"},{"internalType":"uint256","name":"contributions","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_voteWeiAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_weiAmountForWithdrawal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]';
+  const leaderboardAddress = "0x85cBBBD76FBE002eD8a2a94E1335f4a08B16d683";
+  const leaderboardAbi = '[{"inputs":[{"internalType":"string","name":"synthName","type":"string"},{"internalType":"address","name":"existingOracle","type":"address"}],"name":"propose","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"address payable","name":"destination","type":"address"},{"internalType":"uint256","name":"voteWeiAmount","type":"uint256"},{"internalType":"uint256","name":"proposalWeiAmount","type":"uint256"},{"internalType":"uint256","name":"weiAmountForWithdrawal","type":"uint256"},{"internalType":"uint256","name":"maxSynthName","type":"uint256"}],"stateMutability":"nonpayable","type":"constructor"},{"inputs":[{"internalType":"string","name":"synthName","type":"string"}],"name":"vote","outputs":[],"stateMutability":"payable","type":"function"},{"inputs":[{"internalType":"string","name":"synthName","type":"string"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"_maxSynthName","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_numOfSynths","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_proposalWeiAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"_proposedSynthNames","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"string","name":"","type":"string"}],"name":"_proposedSynths","outputs":[{"internalType":"string","name":"name","type":"string"},{"internalType":"address","name":"existingOracle","type":"address"},{"internalType":"uint256","name":"contributions","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_voteWeiAmount","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"_weiAmountForWithdrawal","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]';
   const [proposals, setProposals] = React.useState([])
   const [leaderboardContract, setLeaderboardContract] = React.useState(null);
 
@@ -68,32 +69,32 @@ function App() {
     const signer = await library.getSigner(account);
     const newLeaderboardContract = new Contract(leaderboardAddress, leaderboardAbi, signer);
 
-    // get all synth names
-    const proposalName = await newLeaderboardContract.callStatic._proposedSynthNames(0);
-    const proposalName1 = await newLeaderboardContract.callStatic._proposedSynthNames(1);
+    const BNNumberOfSynths = await newLeaderboardContract.callStatic._numOfSynths();
+    const numberOfSynths = parseInt(BNNumberOfSynths.toString());
+    console.log('numofsynths',numberOfSynths);
 
-    // get all synth data
-    const proposedSynth = await newLeaderboardContract.callStatic._proposedSynths(proposalName);
-    const proposedSynth1 = await newLeaderboardContract.callStatic._proposedSynths(proposalName1);
-    console.log('proposals', proposedSynth)
 
-    const proposedSynthContributions = Utils.toWei(proposedSynth.contributions.toString())
-    const proposedSynthContributions1 = Utils.toWei(proposedSynth1.contributions.toString())
+    let synthNames = [];
+    let proposals = [];
 
-    // translate synth data into javascript model
-    const frontendProposal = {
-        name: proposalName,
-        votes: proposedSynthContributions,
-        feed: proposedSynth.existingOracle === '0x0000000000000000000000000000000000000000' ? null : proposedSynth.existingOracle, 
-    }
-    const frontendProposal1 = {
-        name: proposalName1,
-        votes: proposedSynthContributions1,
-        feed: proposedSynth1.existingOracle === '0x0000000000000000000000000000000000000000' ? null : proposedSynth1.existingOracle, 
+    for(let i = 0; i < numberOfSynths; i++){
+        synthNames.push(await newLeaderboardContract.callStatic._proposedSynthNames(i))
     }
 
-    proposals.push(frontendProposal);
-    proposals.push(frontendProposal1);
+    for(let i = 0; i < numberOfSynths; i++){
+        const contractProposoal = await newLeaderboardContract.callStatic._proposedSynths(synthNames[i]);
+        const proposalVotes = (parseFloat(Utils.fromWei(contractProposoal.contributions.toString())) * 100) - 10;
+        console.log('proposed votes', proposalVotes)
+        const frontendProposal = {
+            name: contractProposoal.name,
+            votes: proposalVotes,
+            feed: contractProposoal.existingOracle === '0x0000000000000000000000000000000000000000' ? null : contractProposoal.existingOracle, 
+        }
+        
+        proposals.push(frontendProposal);
+    }
+
+    setProposals(proposals);
     setLeaderboardContract(newLeaderboardContract);
     console.log('proposals', proposals)
 
