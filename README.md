@@ -39,7 +39,7 @@ Intro-Synth-Pool Requirements:
 5. Possibly the Main Synthetix Protocol itself could run a liquidation bot on the Intro Network which goes towards buying SNX, as a reward to SNX holders
 
 ## What it Does
-This application will allow users to propose and vote on Synths on Rinkeby Testnet. There are two main parts, a Web3-react App and a [Leaderboard smart contract](link to smart contract repo). 
+This application will allow users to propose and vote on Synths on Rinkeby Testnet. There are two main parts, a Web3-react App and a [Leaderboard Smart Contract](https://github.com/JoseRoman/snx-leaderboard-contracts). 
 
 Example Workflow
 1. User goes to leaderboard.eth
