@@ -7,7 +7,6 @@ import { injected } from '../connectors'
 
 const Header = (props) => {
 
-  const [show, setShow] = React.useState(false);
   const context = useWeb3React<Web3Provider>()
   const { connector, library, account, activate, deactivate, active, error } = context
   
@@ -58,7 +57,7 @@ const Header = (props) => {
       </Box>
 
       <Box
-        display={{ sm: show ? "block" : "none", md: "block" }}
+        display={{ sm: "none", md: "block" }}
         mt={{ base: 4, md: 0 }}
       >
         <Button bg="transparent" overflow="hidden" whiteSpace="nowrap" textOverflow="ellipsis" border="1px" onClick={() => {

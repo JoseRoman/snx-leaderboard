@@ -9,8 +9,8 @@ import { ProposalInput } from '../components/ProposalInput'
 import { MinimumAlert } from '../components/MinimumAlert'
 import Header from '../components/NavBar'
 import { Contract } from '@ethersproject/contracts';
+
   import * as Utils from 'web3-utils';
-import { variantPriorityOrder } from 'framer-motion/types/render/utils/animation-state'
 import { injected } from '../connectors'
 
 enum ConnectorNames {
