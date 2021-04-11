@@ -19,13 +19,13 @@ import React from 'react';
 export function LeaderboardList({ proposals, account, leaderboardContract }) {
 
 
-  async function vote(){
+  async function vote(proposalName){
 
     const voteAmount = await leaderboardContract.callStatic._voteWeiAmount();
     console.log('leaderboardContract', leaderboardContract)
     try {
         
-        const tx = await leaderboardContract.vote('sGME',{from: account, value: voteAmount});
+        const tx = await leaderboardContract.vote(proposalName,{from: account, value: voteAmount});
         console.log('tx', tx);
     } catch (error) {
         console.log("error", error)
@@ -67,7 +67,7 @@ export function LeaderboardList({ proposals, account, leaderboardContract }) {
             </Td>
             <Td>
                 <ButtonGroup variant="outline" spacing="5">
-                    <Button colorScheme="blue" onClick={() => vote()}>Vote</Button>
+                    <Button colorScheme="blue" onClick={() => vote(proposal.name)}>Vote</Button>
                     
                 </ButtonGroup>
             </Td>

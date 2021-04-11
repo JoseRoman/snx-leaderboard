@@ -101,7 +101,7 @@ function App() {
           <Button colorScheme="blue" onClick={() => loadProposals()}>Load</Button>
           <MinimumAlert voteAmount={0.01} proposalAmount={0.10}/>
           <LeaderboardList account={account} library={library} proposals={proposals} leaderboardContract={leaderboardContract}/>
-          <ProposalInput account={account} leaderboardContract={leaderboardContract}/>
+          <ProposalInput account={account} leaderboardContract={leaderboardContract} proposals={proposals}/>
         </Box>
       </Center>
       

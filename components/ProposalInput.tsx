@@ -8,7 +8,7 @@ import {
   } from "@chakra-ui/react"
 import { useState } from "react";
 
-export function ProposalInput({leaderboardContract, account}) {
+export function ProposalInput({leaderboardContract, account, proposals}) {
 
     const [name, setName] = useState("");
     const [feed, setFeed] = useState("");
