@@ -4,13 +4,13 @@
 ## Inspiration
 
 ### Overview & Core Idea
-This hackathon was our first development project in DeFi and we had just been learning about the Synthetix ecosystem and wanted an easy way to gauge community interest on future synths. The idea is to have a leaderboard where anyone can suggest a future synth, and the community can vote on it. If the synth got enough votes (ETH) it could be proposed to the Synthetix community with the funds to encourage it's production. Voters / proposers could also get some rewards (maybe SNX, maybe the eventual Synth) for supporting the community for new synth development.
+This hackathon was our first development project in DeFi, and we had just been learning about the [Synthetix](https://synthetix.io/) ecosystem and wanted an easy way to gauge community interest on future synths. The idea is to have a leaderboard where anyone can suggest a future synth, and the community can vote on it. If the synth got enough votes (ETH) it could be proposed to the Synthetix community with the funds to encourage its production. Voters/proposers could also get some rewards (maybe SNX, maybe the eventual Synth) for supporting the community for new synth development.
 
 We believe the Synthetix protocol is uniquely positioned to creatively, and cheaply give investors exposure to the widest variety of assets in all of DeFi.
 
 ### Additional Thoughts / A Potential Future of Synthetix
 
-Exposure to new synths allows for a lot of new possibilities that other protocols have a hard time supporting. For example, if I wanted exposure to the [Dollar Index](https://www.investopedia.com/terms/u/usdx.asp)(contains EUR, CAD, GBP, SEK, CHF) in DeFi I'd be able to find tokenized EUR but the others are more difficult. In this case, gauging support for the other fiat currencies to support on Synthetix would allow users to create such funds, or potentially a synth of the Dollar Index itself. This idea can be used to gauge interest to see which assets users need to fill out their portfolios. Lastly, and most importantly, once users have access to all the synths they care about, meta-synths could be created. The idea of a meta-synth would be very similar to that of a Balancer pool, where users could generate their own weighted synth buckets to get exactly the exposure they want.
+Exposure to new synths allows for a lot of new possibilities that other protocols have a hard time supporting. For example, if I wanted exposure to the [Dollar Index](https://www.investopedia.com/terms/u/usdx.asp) (contains EUR, CAD, GBP, SEK, CHF) in DeFi, I'd be able to find tokenized EUR but the others are more difficult. In this case, gauging support for the other fiat currencies to support on Synthetix would allow users to create such funds, or potentially a synth of the Dollar Index itself. This idea can be used to gauge interest to see which assets users need to fill out their portfolios. Lastly, and most importantly, once users have access to all the synths they care about, meta-synths could be created. The idea of a meta-synth would be very similar to that of a Balancer pool, where users could generate their own weighted synth buckets to get exactly the exposure they want.
 
 In short the progression would be.
 
@@ -39,7 +39,7 @@ Intro-Synth-Pool Requirements:
 5. Possibly the Main Synthetix Protocol itself could run a liquidation bot on the Intro Network which goes towards buying SNX, as a reward to SNX holders
 
 ## What it Does
-This application will allow users to propose and vote on Synths on Rinkeby Testnet. There are two main parts, a Web3-react App and a [Leaderboard smart contract](link to smart contract repo). 
+This application will allow users to propose and vote on Synths on Rinkeby Testnet. There are two main parts, a Web3-react App and a [Leaderboard Smart Contract](https://github.com/JoseRoman/snx-leaderboard-contracts). 
 
 Example Workflow
 1. User goes to leaderboard.eth
@@ -50,17 +50,20 @@ Example Workflow
 6. Once a Synth gets to 1 ETH total (90 votes), the destination address of the contract is allowed to withdraw the funds. (this address would be some donation address to Synthetix in the future)
 
 
-
 ## How we built it 
-- GitHub Actions
-  - Unit Testing
-  - Code
-  - Deployment to Fleek 
-
+- Purchased leaderboard.eth domain through [ENS](https://ens.domains/)
+- Connect leaderboard.eth to our [Fleek](https://fleek.co/) account
+- Setup GitHub Actions
+  - Code Building, Testing, etc. 
+  - Contiunous Deployment with Fleek 
+- Smart Contract and React App Development
+- Testing
+- Project Submission 
 
 ### Tools
 - Solidity
 - Brownie 
 - React
 - ENS
+- Chakra UI
 - Fleek
