@@ -62,7 +62,7 @@ Example Workflow
 
 ### Tools
 - Solidity
-- Brownie 
+- Remix 
 - React
 - ENS
 - Chakra UI
