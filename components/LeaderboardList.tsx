@@ -2,7 +2,6 @@ import {
     Table,
     Thead,
     Tbody,
-    Tfoot,
     Tr,
     Th,
     Td,
@@ -17,7 +16,7 @@ import { ExternalLinkIcon } from '@chakra-ui/icons'
 import React from 'react';
 
 
-export function LeaderboardList({ proposals, library, account, leaderboardContract }) {
+export function LeaderboardList({ proposals, account, leaderboardContract }) {
 
 
   async function vote(){
