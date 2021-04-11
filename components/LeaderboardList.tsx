@@ -48,9 +48,9 @@ export function LeaderboardList({ proposals, library, account, leaderboardContra
     <Table variant="simple" >
     <Thead>
         <Tr>
-        <Th># of Votes</Th>
         <Th>Name</Th>
         <Th>Data Feed</Th>
+        <Th># of Votes</Th>
         <Th>Action</Th>
         </Tr>
     </Thead>
@@ -58,15 +58,6 @@ export function LeaderboardList({ proposals, library, account, leaderboardContra
     {
     proposals.map(proposal => 
         <Tr>
-            <Td>
-                <Stat>
-                    <StatNumber>{ proposal.votes }</StatNumber>
-                    <StatHelpText>
-                        <StatArrow type="increase" />
-                        23.36%
-                    </StatHelpText>
-                </Stat>
-            </Td>
             <Td>{ proposal.name }</Td>
             { proposal.feed
                 ?  <Td>
@@ -76,6 +67,15 @@ export function LeaderboardList({ proposals, library, account, leaderboardContra
                     </Td>
                 : <Td>No Existing Feeds</Td>
             }
+            <Td>
+                <Stat>
+                    <StatNumber>{ proposal.votes }</StatNumber>
+                    <StatHelpText>
+                        <StatArrow type="increase" />
+                        23.36%
+                    </StatHelpText>
+                </Stat>
+            </Td>
             <Td>
                 <ButtonGroup variant="outline" spacing="5">
                     <Button colorScheme="blue" onClick={() => vote()}>Vote</Button>

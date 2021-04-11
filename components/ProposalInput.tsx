@@ -8,20 +8,17 @@ import {
   } from "@chakra-ui/react"
 
 export function ProposalInput({leaderboardContract, account}) {
-
-
+    
     async function propose(){
-
         try {
-            const tx = await leaderboardContract.propose('sMATIC','0x7bAC85A8a13A4BcD8abb3eB7d6b4d632c5a57676',{from: account, value: '100000000000000000'});
+            const tx = await leaderboardContract.propose('sNET','0x7bAC85A8a13A4BcD8abb3eB7d6b4d632c5a57676', { from: account, value: '100000000000000000' });
             console.log('tx', tx);
         } catch (error) {
             console.log("error", error)
         }
-        
-      }
-
-  return (
+    }
+    
+    return (
       <div>
             <br />
             <FormControl id="synth" isRequired>
