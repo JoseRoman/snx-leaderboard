@@ -34,13 +34,13 @@ const Header = (props) => {
       wrap="wrap"
       padding="1.5rem"
       borderBottom="1px solid rgba(255, 255, 255, 0.1)"
-      bg="#1a202c"
+      // bg="#1a202c"
       color="white"
       {...props}
     >
       <Flex align="center" mr={5}>
-        <Heading as="h1" size="lg" letterSpacing={"-.1rem"}>
-          Leaderboard
+        <Heading as="h1" size="lg" letterSpacing={".1rem"} color="rgb(1 208 253)" fontFamily="Inter">
+          LEADERBOARD
         </Heading>
       </Flex>
 

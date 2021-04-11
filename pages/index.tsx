@@ -1,7 +1,8 @@
 import React from 'react'
+import "@fontsource/inter/200.css"
 import { Web3ReactProvider, useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
-import { ChakraProvider, Center, Box, Button } from "@chakra-ui/react"
+import { ChakraProvider, Center, Box, Button, Spacer } from "@chakra-ui/react"
 import { useEagerConnect, useInactiveListener } from '../hooks'
 import theme from '../theme'
 import { LeaderboardList } from '../components/LeaderboardList'
@@ -97,15 +98,14 @@ function App() {
     <>
       <Header/>
       <Center>
-        <Box w="50%" marginTop="10">
+        <Box w="50%" marginTop="8" marginBottom="10" bg="rgb(9 9 47)" padding="25px">
           <Button colorScheme="blue" onClick={() => loadProposals()}>Load</Button>
           <MinimumAlert voteAmount={0.01} proposalAmount={0.10}/>
           <LeaderboardList account={account} library={library} proposals={proposals} leaderboardContract={leaderboardContract}/>
           <ProposalInput account={account} leaderboardContract={leaderboardContract} proposals={proposals}/>
         </Box>
       </Center>
-      
-      <hr style={{ margin: '2rem' }} />
+    
     </>
   )
 }

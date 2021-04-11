@@ -19,7 +19,7 @@ import React from 'react';
 export function LeaderboardList({ proposals, account, leaderboardContract }) {
 
 
-  async function vote(proposalName){
+  async function vote(proposalName: String){
 
     const voteAmount = await leaderboardContract.callStatic._voteWeiAmount();
     console.log('leaderboardContract', leaderboardContract)
