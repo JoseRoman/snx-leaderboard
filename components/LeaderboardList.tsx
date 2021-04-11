@@ -39,7 +39,7 @@ export function LeaderboardList({ proposals, account, leaderboardContract }) {
 
     
     <Table variant="simple" >
-    <Thead>
+    <Thead color="rgb(1 208 253)">
         <Tr>
         <Th>Name</Th>
         <Th>Data Feed</Th>
@@ -67,7 +67,7 @@ export function LeaderboardList({ proposals, account, leaderboardContract }) {
             </Td>
             <Td>
                 <ButtonGroup variant="outline" spacing="5">
-                    <Button colorScheme="blue" onClick={() => vote(proposal.name)}>Vote</Button>
+                    <Button background="rgb(0, 209, 255)" color="rgb(6, 6, 27)" boxShadow="rgb(0 209 255 / 60%) 0px 0px 10px" onClick={() => vote(proposal.name)}>VOTE</Button>
                     
                 </ButtonGroup>
             </Td>

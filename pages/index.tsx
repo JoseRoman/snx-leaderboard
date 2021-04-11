@@ -98,7 +98,7 @@ function App() {
     <>
       <Header/>
       <Center>
-        <Box w="50%" marginTop="8" marginBottom="10" bg="rgb(9 9 47)" padding="25px">
+        <Box w="50%" marginTop="8" marginBottom="10" bg="rgb(9 9 47 / 94%)" borderRadius="5px" border="1px solid rgba(255, 255, 255, 0.1)" padding="25px">
           <Button colorScheme="blue" onClick={() => loadProposals()}>Load</Button>
           <MinimumAlert voteAmount={0.01} proposalAmount={0.10}/>
           <LeaderboardList account={account} library={library} proposals={proposals} leaderboardContract={leaderboardContract}/>

@@ -24,6 +24,12 @@ const overrides = extendTheme({
 
         lineHeight: "base",
       },
+      th: {
+        color: "rgb(1 208 253) !important"
+      },
+      label: {
+        color: "rgb(1 208 253) !important"
+      }
     }),
   },
 })

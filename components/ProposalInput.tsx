@@ -38,17 +38,17 @@ export function ProposalInput({leaderboardContract, account, proposals}) {
       <div>
             <br />
             <FormControl id="synth" isRequired>
-                <FormLabel>Synth Name</FormLabel>
+                <FormLabel>SYNTH NAME</FormLabel>
                 <Input type="text" value={name} onChange={e => setName(e.target.value)} required/>
                 <FormHelperText>Please use ticker symbol (Ex. TSLA instead of Tesla)</FormHelperText>
             </FormControl>
             <br/>
             <FormControl id="feed">
-                <FormLabel>Data Feed</FormLabel>
+                <FormLabel>DATA FEED</FormLabel>
                 <Input type="text" value={feed} onChange={e => setFeed(e.target.value)} />
                 <FormHelperText>Please use contract address (Ex. 0xDC530D9457755926550b59e8ECcdaE7624181557)</FormHelperText>
             </FormControl>
-            <Button mt={4} colorScheme="teal" type="submit" onClick={() => propose()}>Submit</Button>
+            <Button mt={4} background="rgb(0, 209, 255)" color="rgb(6, 6, 27)" boxShadow="rgb(0 209 255 / 60%) 0px 0px 10px" type="submit" onClick={() => propose()}>SUBMIT</Button>
       </div>
   )
 }

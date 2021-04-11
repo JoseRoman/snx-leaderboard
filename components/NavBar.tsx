@@ -40,7 +40,7 @@ const Header = (props) => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={".1rem"} color="rgb(1 208 253)" fontFamily="Inter">
-          LEADERBOARD
+          LEADERBOARD.ETH
         </Heading>
       </Flex>
 
