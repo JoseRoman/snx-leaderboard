@@ -1,5 +1,6 @@
-# leaderboard.eth 
+# LEADERBOARD.ETH 
 
+![](https://raw.githubusercontent.com/JoseRoman/snx-leaderboard/main/mountain.png)
 
 ## Inspiration
 
