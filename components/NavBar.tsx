@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Heading, Flex, Button } from "@chakra-ui/react";
+import { Box, Heading, Flex, Button, Image } from "@chakra-ui/react";
 import { useEagerConnect, useInactiveListener } from "../hooks";
 import { useWeb3React } from '@web3-react/core'
 import { Web3Provider } from '@ethersproject/providers'
@@ -40,7 +40,7 @@ const Header = (props) => {
     >
       <Flex align="center" mr={5}>
         <Heading as="h1" size="lg" letterSpacing={".1rem"} color="rgb(1 208 253)" fontFamily="Inter">
-          LEADERBOARD.ETH
+          <Image src="/static/logo.png"/>
         </Heading>
       </Flex>
 
